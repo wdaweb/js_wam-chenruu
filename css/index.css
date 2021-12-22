@@ -1,0 +1,70 @@
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            height: 100vh;
+        }
+        
+        .container {
+            width: 60%;
+            height: 70%;
+            border: 1px solid #000;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.6)), url("../Clinic.jpg") no-repeat center/cover;
+            display: flex;
+            justify-content: center;
+            margin: auto;
+        }
+        
+        img {
+            width: 400px;
+            height: 500px;
+            position: fixed;
+            bottom: 30%;
+        }
+        
+        p {
+            position: absolute;
+            top: 10%;
+            color: rgb(255, 230, 0);
+            font-weight: bold;
+            font-size: 8rem;
+            margin-left: 10px;
+            text-shadow:-1px -1px white, 1px 1px #333;
+            z-index: 5;
+        }
+
+        .blur{
+            -webkit-filter:blur(2px);
+            }
+        
+        .start {
+            display: flex;
+            justify-content: center;
+            align-self: center;
+            margin: auto;
+        }
+        
+        input {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(to right, #f3a996 10%, #ff702e 50%, #f63b23 100%);
+            border-radius: 50%;
+            border: transparent;
+            position: absolute;
+            bottom: 15%;
+            box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+        }
+        
+        .start img {
+            width: 50px;
+            height: 50px;
+            margin: auto 5px;
+            position: absolute;
+            bottom: 18%;
+            z-index: 8;
+        }
+
+      

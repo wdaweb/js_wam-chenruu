@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/play.css">
+
+    <title>game</title>
+</head>
+
+<body>
+    <div id="container">
+        <img src="8.png" alt="">
+    </div>
+    <div class="num">
+        <div class="high">
+            最高分
+            <br> 玩家: <span id="highname">XXX</span>
+            <br> 分數: <span id="highscore">0</span>
+        </div>
+    </div>
+    <div class="left">
+        <img class="water" src="./漱口水.png" alt="">
+        總分數:<span id="score">0</span>
+
+    </div>
+    <div class="right">
+        <img class="clock" src="./時間.gif" alt="">
+        時間:<span id="time">10</span>
+    </div>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+
+        const score = document.getElementById('score')
+        const time = document.getElementById('time')
+        const background = document.getElementById('container')
+        const highnameText = document.getElementById('highname')
+        const highscoreText = document.getElementById('highscore')
+
+        const high = {
+            score: 0,
+            name: 'XXX'
+        }
+        let s = 0
+        let t = 10
+
+
+        const storage = JSON.parse(localStorage.getItem('dadishu'))
+        if (storage) {
+            high.name = storage.name
+            high.score = storage.score
+            highnameText.innerText = high.name
+            highscoreText.innerText = high.score
+        }
+
+        window.onload = function () {
+            timer = setInterval(() => {
+                t--
+                time.innerText = t
+            }, 1000)
+
+
+            timer2 = setInterval(monster, 500)
+            setTimeout(end, 10 * 1000)
+        }
+        monster = () => {
+            let germ = document.createElement("img")
+            germ.src = '細菌.png'
+            germ.style.width = '10%'
+            germ.style.height = '10%'
+            background.appendChild(germ)
+            let top = `${Math.floor(Math.random() * 50) + 25}%`
+            let left = `${Math.floor(Math.random() * 40) + 29}%`
+            console.log(top)
+            console.log(left)
+            germ.style.top = top
+            germ.style.left = left
+
+            document.onkeydown = function (e) {
+                let keyNum = window.event ? e.keyCode : e.which
+                if (keyNum == 32) {
+                    background.removeChild(germ)
+                    s++
+                    score.innerText = s
+                    console.log(s)
+                }
+            }
+        }
+
+        const end = () => {
+            if (t <= 0) {
+                Swal.fire({
+                    title: '遊戲結束'
+                })
+                clearInterval(timer)
+                time.innerText = 0
+            }
+
+            clearInterval(timer2)
+
+
+
+            if (s > high.score) {
+                const input = prompt('最高分，請輸入名字')
+                high.score = s
+                high.name = input || 'XXX'
+
+                highnameText.innerText = high.name
+                highscoreText.innerText = high.score
+                console.log(high.score)
+
+                localStorage.setItem('dadishu', JSON.stringify(high))
+            }
+        }
+
+
+
+
+    </script>
+</body>
+
+</html>
